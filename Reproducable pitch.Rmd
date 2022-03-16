@@ -1,0 +1,57 @@
+---
+title: "Reproducable pitch"
+author: "Jacob Mokgadi"
+date: "16/03/2022"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Coursera reproducible pitch
+
+## Regression models
+
+URL:
+
+## Details
+You can find all the details here
+URL:https://github.com/JacobTawanaLumi/Developing-data-products-week-4-assignment
+
+
+## mtcars dataset
+
+The data used was mtcars, which comes installed in R
+
+
+## Source
+Henderson and Velleman (1981), Building multiple regression models interactively. Biometrics, 37, 391-411.
+
+```{r}
+library(datasets)
+head(mtcars, 3)
+```
+
+---
+
+## Analysis  - Main code
+```r
+  formulaTextPoint <- reactive({
+    paste("mpg ~", "as.integer(", input$variable, ")")  })
+  
+  fit <- reactive({
+    lm(as.formula(formulaTextPoint()), data=mpgData)  })
+  ...
+  output$fit <- renderPrint({
+    summary(fit()) })
+  
+  output$mpgPlot <- renderPlot({
+    with(mpgData, {
+      plot(as.formula(formulaTextPoint()))
+      abline(fit(), col=2)
+    })  })
+```
+
+
+
